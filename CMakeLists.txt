@@ -8,7 +8,7 @@ set(LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
 set(GLFW glfw-3.3.4.bin.WIN32)
 set(GLEW glew-2.1.0)
 
-set(SOURCE_FILES ${SRC_DIR}/Application.cpp src/Renderer.h src/Renderer.cpp src/Renderer.h src/VertexBuffer.cpp src/VertexBuffer.h src/IndexBuffer.cpp src/IndexBuffer.h src/VertexArray.cpp src/VertexArray.h src/VertexBufferLayout.cpp src/VertexBufferLayout.h src/Shader.cpp src/Shader.h)
+set(SOURCE_FILES ${SRC_DIR}/Application.cpp src/Renderer.h src/Renderer.cpp src/Renderer.h src/VertexBuffer.cpp src/VertexBuffer.h src/IndexBuffer.cpp src/IndexBuffer.h src/VertexArray.cpp src/VertexArray.h src/VertexBufferLayout.cpp src/VertexBufferLayout.h src/Shader.cpp src/Shader.h src/vendor/stb_image/stb_image.cpp src/Texture.cpp src/Texture.h)
 
 include_directories(${LIB_DIR}/${GLFW}/include ${LIB_DIR}/${GLEW}/include)
 
