@@ -17,7 +17,7 @@ void __debugbreak() {
 bool GLLogCall(const char* function, const char* file, int line) {
     while (GLenum error = glGetError()){
         std::cout << "[OpenGL Error] ( 0x" << error << std::hex << " )" << function <<
-            "" << file << ":" << line;
+            "" << file << ":" << line << std::dec << std::endl;
         return false;
     }
     return true;

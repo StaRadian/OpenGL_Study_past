@@ -5,7 +5,7 @@
 #ifndef STUDY_RENDERER_H
 #define STUDY_RENDERER_H
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include "VertexArray.h"
 #include "IndexBuffer.h"
 #include "Shader.h"
