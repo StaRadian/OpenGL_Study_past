@@ -78,12 +78,12 @@ int main(void) {
 
         glm::mat4 mvp = proj * view * model;
 
-        Shader shader("../res/shaders/Basic.shader");
+        Shader shader("/res/shaders/Basic.shader");
         shader.Bind();
         shader.SetUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
         shader.SetUniformMat4f("u_MVP", mvp);
 
-        Texture texture("../res/textures/Postman_Kyle.PNG");
+        Texture texture("/res/textures/Postman_Kyle.PNG");
         texture.Bind();
         shader.SetUniform1i("u_Texture", 0);
 

@@ -1,19 +1,22 @@
-cmake_minimum_required(VERSION 3.19)
-project(Study)
+cmake_minimum_required(VERSION 3.19) #cmake verison
+project(Study)  #project name
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20) #C++ version 20
 
 set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)  #Source file dir
 set(LIB_DIR ${PROJECT_SOURCE_DIR}/lib)  #Library file dir
 
-if(WIN)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}) #set working directory
+
+# set GLFW file name
+if(WIN32)   #if Win
     set(GLFW glfw-3.3.4.bin.WIN32)
-    set(GLEW glew-2.1.0)
-elseif(UNIX)
+elseif(UNIX)    #if UNIX
     set(GLFW glfw)
-    set(GLEW glew)
 endif()
 
+# set GLEW file name
+set(GLEW glew-2.1.0)
 set(VENDOR vendor)
 set(SOURCE_FILES
         ${SRC_DIR}/Application.cpp
@@ -35,7 +38,7 @@ set(SOURCE_FILES
 
         ${LIB_DIR}/${VENDOR}/stb_image/stb_image.cpp)
 
-if(WIN)
+if(WIN32)
     include_directories(
             ${LIB_DIR}/${GLFW}/include
             ${LIB_DIR}/${GLEW}/include
