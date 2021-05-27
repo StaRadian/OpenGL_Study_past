@@ -17,7 +17,7 @@ endif()
 
 # set GLEW file name
 set(GLEW glew-2.1.0)
-set(VENDOR vendor)
+set(VENDOR ${LIB_DIR}/vendor)
 set(SOURCE_FILES
         ${SRC_DIR}/Application.cpp
         ${SRC_DIR}/Renderer.cpp
@@ -28,28 +28,35 @@ set(SOURCE_FILES
         ${SRC_DIR}/Shader.cpp
         ${SRC_DIR}/Texture.cpp
 
-        ${SRC_DIR}/Renderer.h
-        ${SRC_DIR}/VertexBuffer.h
-        ${SRC_DIR}/IndexBuffer.h
-        ${SRC_DIR}/VertexArray.h
-        ${SRC_DIR}/VertexBufferLayout.h
-        ${SRC_DIR}/Shader.h
-        ${SRC_DIR}/Texture.h
+        ${VENDOR}/stb_image/stb_image.cpp
 
-        ${LIB_DIR}/${VENDOR}/stb_image/stb_image.cpp)
+        ${VENDOR}/imgui/imgui.cpp
+        ${VENDOR}/imgui/imgui_demo.cpp
+        ${VENDOR}/imgui/imgui_draw.cpp
+        ${VENDOR}/imgui/imgui_tables.cpp
+        ${VENDOR}/imgui/imgui_widgets.cpp
+
+        ${VENDOR}/imgui/imgui_impl_glfw.cpp
+        ${VENDOR}/imgui/imgui_impl_opengl3.cpp
+        )
 
 if(WIN32)
     include_directories(
             ${LIB_DIR}/${GLFW}/include
             ${LIB_DIR}/${GLEW}/include
-            ${LIB_DIR}/${VENDOR})
-    link_directories(${LIB_DIR}/${GLFW}/lib-mingw ${LIB_DIR}/${GLEW}/lib/Release/Win32)
+            ${VENDOR})
+    link_directories(
+            ${LIB_DIR}/${GLFW}/lib-mingw
+            ${LIB_DIR}/${GLEW}/lib/Release/Win32)
     add_compile_definitions(GLEW_STATIC)
     add_executable(Study ${SOURCE_FILES})
     target_link_libraries(Study glew32s glfw3 Opengl32 Gdi32 Shell32)
 
 elseif(UNIX)
-    include_directories(${LIB_DIR}/${GLFW}/include ${LIB_DIR}/${GLEW}/include ${LIB_DIR}/${VENDOR})
+    include_directories(
+            ${LIB_DIR}/${GLFW}/include
+            ${LIB_DIR}/${GLEW}/include
+            ${VENDOR})
     add_executable(Study ${SOURCE_FILES})
     target_link_libraries(Study GL glfw GLEW)
 
