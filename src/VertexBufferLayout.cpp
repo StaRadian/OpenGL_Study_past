@@ -4,7 +4,6 @@
 
 #include "VertexBufferLayout.h"
 #include <vector>
-#include <GL/glew.h>
 #include "Renderer.h"
 
 template<typename T> void VertexBufferLayout::Push(unsigned int count) {

@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 20) #C++ version 20
 
 set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)  #Source file dir
 set(LIB_DIR ${PROJECT_SOURCE_DIR}/lib)  #Library file dir
+set(VENDOR ${LIB_DIR}/vendor) #Vendor file dir
+set(TEST ${SRC_DIR}/tests) #Tests file dir
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}) #set working directory
 
@@ -17,7 +19,7 @@ endif()
 
 # set GLEW file name
 set(GLEW glew-2.1.0)
-set(VENDOR ${LIB_DIR}/vendor)
+
 set(SOURCE_FILES
         ${SRC_DIR}/Application.cpp
         ${SRC_DIR}/Renderer.cpp
@@ -38,13 +40,20 @@ set(SOURCE_FILES
 
         ${VENDOR}/imgui/imgui_impl_glfw.cpp
         ${VENDOR}/imgui/imgui_impl_opengl3.cpp
-        )
+
+        ${TEST}/Test.cpp
+        ${TEST}/Test.h
+        ${TEST}/TestClearColor.cpp
+        ${TEST}/TestClearColor.h)
+
+
+include_directories(
+        ${LIB_DIR}/${GLFW}/include
+        ${LIB_DIR}/${GLEW}/include
+        ${VENDOR}
+        ${SRC_DIR})
 
 if(WIN32)
-    include_directories(
-            ${LIB_DIR}/${GLFW}/include
-            ${LIB_DIR}/${GLEW}/include
-            ${VENDOR})
     link_directories(
             ${LIB_DIR}/${GLFW}/lib-mingw
             ${LIB_DIR}/${GLEW}/lib/Release/Win32)
@@ -53,10 +62,6 @@ if(WIN32)
     target_link_libraries(Study glew32s glfw3 Opengl32 Gdi32 Shell32)
 
 elseif(UNIX)
-    include_directories(
-            ${LIB_DIR}/${GLFW}/include
-            ${LIB_DIR}/${GLEW}/include
-            ${VENDOR})
     add_executable(Study ${SOURCE_FILES})
     target_link_libraries(Study GL glfw GLEW)
 
